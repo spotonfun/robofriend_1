@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-import {robots} from '../robots'
+// import {robots} from '../robots'
 import CardList from '../components/CardList'
 import SearchBox from '../components/SearchBox'
 import Scroll from '../components/Scroll'
@@ -30,14 +30,14 @@ class App  extends React.Component {
   }
 
   render () {
-    const filterRobots = this.state.robots.filter(robot => {
-      return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+    const { robots, searchfield } = this.state;
+    const filterRobots = robots.filter(robot => {
+      return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     });
-    // console.log(filterRobots);
-    if(this.state.robots.length === 0) {
-      return <h1>Loading...</h1>
-    } else {
-      return (
+     
+    return !robots.length ?
+      <h1>Loading...</h1> :      
+      (
         <div className="tc">
           <h1 className="f2">RoboFriend</h1>
           <p>welcome to robofriend app</p>
@@ -47,7 +47,7 @@ class App  extends React.Component {
           </Scroll>
         </div>
       );
-    }
+    
   }
 }
 
